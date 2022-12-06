@@ -1,0 +1,26 @@
+.dice{
+    background-color: #FFFAF0;
+    height: 70px;
+    width: 70px;
+    line-height: 70px;
+    border: 1px solid #696969;
+    justify-content: center;
+    margin: 5px auto;
+    border-radius: 5px;
+}
+.dice:hover{
+    background-color: #F0F8FF;
+}
+
+.dice.selected{
+    background-color: #D3D3D3;
+}
+
+/* 
+    base: #FFFAF0
+    hover #F0F8FF
+    selected: #D3D3D3
+
+
+
+*/

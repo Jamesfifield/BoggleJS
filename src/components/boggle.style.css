@@ -1,0 +1,19 @@
+.boggle {
+  border: 1px solid black;
+}
+
+.boggle > .row > .col {
+  padding: 20px;
+  height: 100px !important;
+  background-color: #f0e68c;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  border: 1px solid black;
+}
+
+.selected {
+  background-color: green;
+}
