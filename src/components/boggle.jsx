@@ -20,7 +20,7 @@ const Boggle = ({ boardSize }) => {
     setSelectedDice([]);
   };
 
-  //2. Allow user to create a word using the values of each dice
+  //2. Create word
   const onDiceSelect = ({ target }, position) => {
     //returns true if previous array index is next to new array index.
     if (!gameUtils.hasConnectedPath(prevDice.current, position)) {
