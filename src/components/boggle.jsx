@@ -12,6 +12,7 @@ import Timer from "./Timer";
 import WordList from "./WordList";
 import Button from "./Button";
 import DisplayUserInput from "./DisplayUserInput";
+import Navbar from "./navbar.component";
 
 const Boggle = ({ boardSize }) => {
   const initGame = () => {
@@ -70,6 +71,7 @@ const Boggle = ({ boardSize }) => {
 
   return (
     <div className="container text-center boggle">
+      <Navbar onClick={() => ""} />
       <GridView grid={gameModel}>
         <Dice selectedDice={selectedDice} onClick={onDiceSelect} />
       </GridView>
