@@ -9,6 +9,9 @@ import { useDictionary } from "../hooks/useDictionary";
 
 import "./boggle.style.css";
 import Timer from "./Timer";
+import WordList from "./WordList";
+import Button from "./Button";
+import DisplayUserInput from "./DisplayUserInput";
 
 const Boggle = ({ boardSize }) => {
   const initGame = () => {
@@ -56,11 +59,9 @@ const Boggle = ({ boardSize }) => {
   const [gameModel, setGameModel] = useState([[]]);
   const [selectedDice, setSelectedDice] = useState([]);
   const [list, setList] = useDictionary([]); //data struction that will only store valid words and non duplicates.
-  const time = useRef(Date.now() + 1000 * 3);
 
   const selectedWord = selectedDice.map((e) => e.innerHTML).join("");
   const prevDice = useRef(null);
-  const timerRef = useRef(null);
 
   //Runs after component has been rendered or when props have been updated.
   useEffect(() => {
@@ -73,19 +74,11 @@ const Boggle = ({ boardSize }) => {
         <Dice selectedDice={selectedDice} onClick={onDiceSelect} />
       </GridView>
 
-      <div>selected: {selectedWord}</div>
-      <button className="btn" onClick={checkWordValid}>
-        Check
-      </button>
-      <button className="btn" onClick={clearSelected}>
-        Clear
-      </button>
-      <div>
-        <h3>Words</h3>
-        {list.map((word, index) => (
-          <div key={index}>{word}</div>
-        ))}
-      </div>
+      <DisplayUserInput input={selectedWord} />
+
+      <Button onClick={checkWordValid} value={"Check"} />
+      <Button onClick={clearSelected} value={"Clear"} />
+      <WordList list={list} listHeader={"Correct Words"} />
       <Timer countdown={90} onComplete={() => alert("game over")} />
     </div>
   );
