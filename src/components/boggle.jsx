@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
 import Dice from "./dice.component";
+import Countdown, { CountdownApi } from "react-countdown";
 
 import gameUtils from "../utils/gameUtils";
 import GridView from "../layouts/GridView";
@@ -7,6 +8,7 @@ import GridView from "../layouts/GridView";
 import { useDictionary } from "../hooks/useDictionary";
 
 import "./boggle.style.css";
+import Timer from "./Timer";
 
 const Boggle = ({ boardSize }) => {
   const initGame = () => {
@@ -43,7 +45,7 @@ const Boggle = ({ boardSize }) => {
       setSelectedDice([...selectedDice].slice(0, -1));
     }
 
-    //Have to remove dice in order or by clearing all. At this stage do nothing.
+    //Have to remove dice in order or by clearing all. At this stage do nothing.ddsd
   };
 
   const checkWordValid = () => {
@@ -54,9 +56,11 @@ const Boggle = ({ boardSize }) => {
   const [gameModel, setGameModel] = useState([[]]);
   const [selectedDice, setSelectedDice] = useState([]);
   const [list, setList] = useDictionary([]); //data struction that will only store valid words and non duplicates.
+  const time = useRef(Date.now() + 1000 * 3);
 
   const selectedWord = selectedDice.map((e) => e.innerHTML).join("");
   const prevDice = useRef(null);
+  const timerRef = useRef(null);
 
   //Runs after component has been rendered or when props have been updated.
   useEffect(() => {
@@ -82,6 +86,7 @@ const Boggle = ({ boardSize }) => {
           <div key={index}>{word}</div>
         ))}
       </div>
+      <Timer countdown={90} onComplete={() => alert("game over")} />
     </div>
   );
 };
