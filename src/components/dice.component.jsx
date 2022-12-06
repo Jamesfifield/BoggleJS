@@ -5,7 +5,7 @@ import "./dice.style.css";
 const Dice = ({ onClick, selectedDice, position }) => {
   //console.log(position);
   const element = useRef();
-  const value = useRef(RandomLetter("ABCDEFGHIKLMNOPRSTU"));
+  const value = useRef(RandomLetter("ABCDEFGHIKLMNOPRSTUAIEO"));
 
   let selected = selectedDice.includes(element.current);
 

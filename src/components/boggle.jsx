@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import Dice from "./dice.component";
 import Countdown, { CountdownApi } from "react-countdown";
+import { useLocation, useNavigate } from "react-router-dom";
 
 import gameUtils from "../utils/gameUtils";
 import GridView from "../layouts/GridView";
@@ -14,7 +15,14 @@ import Button from "./Button";
 import DisplayUserInput from "./DisplayUserInput";
 import Navbar from "./navbar.component";
 
-const Boggle = ({ boardSize }) => {
+const config = {
+  defaultSize: 4,
+  timerInSeconds: 90,
+};
+
+const Boggle = () => {
+  const boardSize = useLocation().state?.gameSize || config.defaultSize;
+
   const initGame = () => {
     clearSelected();
     setList([]);
@@ -59,6 +67,7 @@ const Boggle = ({ boardSize }) => {
 
   const [gameModel, setGameModel] = useState([[]]);
   const [selectedDice, setSelectedDice] = useState([]);
+  const navigate = useNavigate();
   const [list, setList] = useDictionary([]); //data struction that will only store valid words and non duplicates.
 
   const selectedWord = selectedDice.map((e) => e.innerHTML).join("");
@@ -72,16 +81,20 @@ const Boggle = ({ boardSize }) => {
   return (
     <div className="container text-center boggle">
       <Navbar onClick={() => ""} />
+      <DisplayUserInput input={selectedWord} />
       <GridView grid={gameModel}>
         <Dice selectedDice={selectedDice} onClick={onDiceSelect} />
       </GridView>
 
-      <DisplayUserInput input={selectedWord} />
-
       <Button onClick={checkWordValid} value={"Check"} />
       <Button onClick={clearSelected} value={"Clear"} />
       <WordList list={list} listHeader={"Correct Words"} />
-      <Timer countdown={90} onComplete={() => alert("game over")} />
+      <Timer
+        countdown={config.timerInSeconds}
+        onComplete={() =>
+          navigate("/gameover", { state: { data: list, gameSize: boardSize } })
+        }
+      />
     </div>
   );
 };
