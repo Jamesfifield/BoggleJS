@@ -3,20 +3,16 @@ import Boggle from "./boggle";
 import Navbar from "./navbar.component";
 import { Route, Routes } from "react-router-dom";
 import Home from "../pages/home";
+import Gameover from "../pages/Gameover";
 
 const App = () => {
-  const [gameSize, setGameSize] = useState(4);
-
-  const onNavClick = (e) => {
-    setGameSize(e.target.value);
-  };
-
   return (
     <>
-      <Navbar onClick={onNavClick} />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/game" element={<Boggle boardSize={gameSize} />} />
+        <Route path="/game" element={<Boggle boardSize={4} />} />
+        <Route path="/gameover" element={<Gameover />} />
+        <Route path="*" element={<h1>404</h1>} />
       </Routes>
     </>
   );
