@@ -1,0 +1,12 @@
+.userInput {
+  background: white;
+  min-height: 30px;
+  min-width: 50px;
+  color: black;
+  padding: 5px;
+  line-height: 30px;
+  margin: 5px;
+  border-radius: 10px;
+  font-size: 25px;
+  display: block;
+}

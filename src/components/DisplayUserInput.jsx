@@ -1,7 +1,8 @@
 import React from "react";
+import "./displayUserInput.css";
 
 export const DisplayUserInput = ({ input }) => {
-  return <div>input: {input}</div>;
+  return <div className="userInput">{input}</div>;
 };
 
 export default DisplayUserInput;

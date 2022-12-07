@@ -1,19 +1,23 @@
-.dice{
-    background-color: #FFFAF0;
-    height: 70px;
-    width: 70px;
-    line-height: 70px;
-    border: 1px solid #696969;
-    justify-content: center;
-    margin: 5px auto;
-    border-radius: 5px;
+.dice {
+  display: flex;
+  background-color: #fffaf0;
+  height: 70px;
+  width: 70px;
+  line-height: 70px;
+  border: 1px solid #696969;
+  justify-content: center;
+  border-radius: 11px;
+  color: #696969;
+  font-size: 50px;
+  font-weight: bold;
 }
-.dice:hover{
-    background-color: #F0F8FF;
+.dice:hover {
+  background-color: #f0f8ff;
+  cursor: pointer;
 }
 
-.dice.selected{
-    background-color: #D3D3D3;
+.dice.selected {
+  background-color: #b4b3b3;
 }
 
 /* 

@@ -1,23 +1,27 @@
 import React from "react";
 
 const GridView = ({ grid, children }) => {
-  return grid.map((row, rowIndex) => (
-    <div className="row" key={rowIndex}>
-      {row.map((bucket, colIndex) => (
-        <div className="col" key={colIndex}>
-          {React.Children.map(children, (child) => {
-            if (React.isValidElement(child)) {
-              return React.cloneElement(child, {
-                position: { row: rowIndex, col: colIndex },
-              });
-            }
+  return (
+    <div className="gridview-container">
+      {grid.map((row, rowIndex) => (
+        <div className="row" key={rowIndex}>
+          {row.map((bucket, colIndex) => (
+            <div className="col" key={colIndex}>
+              {React.Children.map(children, (child) => {
+                if (React.isValidElement(child)) {
+                  return React.cloneElement(child, {
+                    position: { row: rowIndex, col: colIndex },
+                  });
+                }
 
-            return child;
-          })}
+                return child;
+              })}
+            </div>
+          ))}
         </div>
       ))}
     </div>
-  ));
+  );
 };
 
 export default GridView;

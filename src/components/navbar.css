@@ -1,0 +1,9 @@
+.navbar-brand {
+  text-decoration: none;
+  font-size: 40px;
+  color: #fffaf0;
+}
+
+.navbar {
+  padding: 10px;
+}

@@ -1,6 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
 import Dice from "./dice.component";
-import Countdown, { CountdownApi } from "react-countdown";
 import { useLocation, useNavigate } from "react-router-dom";
 
 import gameUtils from "../utils/gameUtils";
@@ -61,12 +60,14 @@ const Boggle = () => {
   };
 
   const checkWordValid = () => {
-    setList([...list], selectedWord);
+    setList([...list], selectedWord, (e) => setInvalidWord(selectedWord));
+
     clearSelected();
   };
 
   const [gameModel, setGameModel] = useState([[]]);
   const [selectedDice, setSelectedDice] = useState([]);
+  const [invalidWord, setInvalidWord] = useState();
   const navigate = useNavigate();
   const [list, setList] = useDictionary([]); //data struction that will only store valid words and non duplicates.
 
@@ -81,20 +82,35 @@ const Boggle = () => {
   return (
     <div className="container text-center boggle">
       <Navbar onClick={() => ""} />
-      <DisplayUserInput input={selectedWord} />
-      <GridView grid={gameModel}>
-        <Dice selectedDice={selectedDice} onClick={onDiceSelect} />
-      </GridView>
 
-      <Button onClick={checkWordValid} value={"Check"} />
-      <Button onClick={clearSelected} value={"Clear"} />
-      <WordList list={list} listHeader={"Correct Words"} />
-      <Timer
-        countdown={config.timerInSeconds}
-        onComplete={() =>
-          navigate("/gameover", { state: { data: list, gameSize: boardSize } })
-        }
-      />
+      <div className="gameWrapper">
+        <div>
+          <div>
+            <Timer
+              countdown={config.timerInSeconds}
+              onComplete={() =>
+                navigate("/gameover", {
+                  state: { data: list, gameSize: boardSize },
+                })
+              }
+            />
+            {invalidWord && <div>{invalidWord} is not a valid word</div>}
+          </div>
+        </div>
+        <div>
+          <GridView grid={gameModel}>
+            <Dice selectedDice={selectedDice} onClick={onDiceSelect} />
+          </GridView>
+          <div>
+            <DisplayUserInput input={selectedWord} />
+            <Button onClick={checkWordValid} value={"Check"} />
+            <Button onClick={clearSelected} value={"Clear"} />
+          </div>
+        </div>
+        <div>
+          <WordList list={list} listHeader={"Correct Words"} />
+        </div>
+      </div>
     </div>
   );
 };

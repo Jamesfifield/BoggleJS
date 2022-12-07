@@ -1,0 +1,8 @@
+.timer {
+  color: red;
+  display: flex;
+  justify-content: center;
+  font-size: 30px;
+  font-weight: bold;
+  padding: 0 10px;
+}

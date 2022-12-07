@@ -1,6 +1,8 @@
 import Countdown, { CountdownApi } from "react-countdown";
 import React, { useState } from "react";
 
+import "./timer.css";
+
 const Timer = ({ countdown, onComplete }) => {
   const [currentTime, setCurrentTime] = useState(Date.now() + 1000 * countdown);
 
@@ -17,9 +19,9 @@ const Timer = ({ countdown, onComplete }) => {
         if (completed) return <span>Times up</span>;
         // render current countdown time
         return (
-          <span>
+          <div className="timer">
             {minutes}:{seconds}
-          </span>
+          </div>
         );
       }}
     />
