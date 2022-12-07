@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/BoggleJS/static/css/main.b0ee6383.css",
+    "main.js": "/BoggleJS/static/js/main.91e996b0.js",
+    "index.html": "/BoggleJS/index.html",
+    "main.b0ee6383.css.map": "/BoggleJS/static/css/main.b0ee6383.css.map",
+    "main.91e996b0.js.map": "/BoggleJS/static/js/main.91e996b0.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.b0ee6383.css",
+    "static/js/main.91e996b0.js"
+  ]
+}
