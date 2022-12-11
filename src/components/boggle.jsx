@@ -16,7 +16,7 @@ import Navbar from "./navbar.component";
 
 const config = {
   defaultSize: 4,
-  timerInSeconds: 90,
+  timerInSeconds: 60,
 };
 
 const Boggle = () => {
