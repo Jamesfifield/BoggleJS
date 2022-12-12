@@ -7,7 +7,7 @@ import GridView from "../layouts/GridView";
 
 import { useDictionary } from "../hooks/useDictionary";
 
-import "./boggle.style.css";
+import "./styles/boggle.style.css";
 import Timer from "./Timer";
 import WordList from "./WordList";
 import Button from "./Button";
@@ -83,7 +83,7 @@ const Boggle = () => {
     <div className="container text-center boggle">
       <Navbar onClick={() => ""} />
 
-      <div className="gameWrapper">
+      <div className="gameWrapper" data-testid="custom-element">
         <div>
           <div>
             <Timer

@@ -1,18 +1,44 @@
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
 import "@testing-library/jest-dom";
+import { BrowserRouter as Router, MemoryRouter } from "react-router-dom";
 
-import Button from "../Button";
+import Boggle from "../boggle";
 
-it("renders with or without a name", () => {
-  render(<Button value="hello there" />);
-  expect(screen.getByRole("button")).toHaveTextContent("hello there");
-});
+describe("Boggle wraps all game components and logic", () => {
+  const { container } = render(
+    <Router>
+      <Boggle />
+    </Router>
+  );
 
-it("renders with or without a name", () => {
-  const clickEvent = jest.fn();
-  render(<Button value="hello there" onClick={clickEvent} />);
-  fireEvent.click(screen.getByRole("button"));
+  it("The default gamesize should be 4x4. There for there should be a total of 16 dice with the class .col", () => {
+    expect(container.getElementsByClassName("col").length).toBe(16);
+  });
 
-  expect(clickEvent).toHaveBeenCalledTimes(1);
+  it("should add dice value to output screen when clicked", () => {
+    const { container } = render(
+      <Router>
+        <Boggle />
+      </Router>
+    );
+    let diceButton = container.getElementsByClassName("dice");
+    fireEvent.click(diceButton[0]);
+
+    let output = container.getElementsByClassName("userInput")[0].textContent;
+    console.log(output);
+
+    expect(
+      container.getElementsByClassName("userInput")[0].textContent
+    ).toEqual(output);
+  });
+
+  it("should render game size equal to state past by the router", () => {
+    const { container } = render(
+      <MemoryRouter initialEntries={[{ state: { gameSize: 8 } }]}>
+        <Boggle />
+      </MemoryRouter>
+    );
+
+    expect(container.getElementsByClassName("col").length).toBe(8 * 8);
+  });
 });

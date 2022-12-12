@@ -1,7 +1,7 @@
 import Countdown, { CountdownApi } from "react-countdown";
 import React, { useState } from "react";
 
-import "./timer.css";
+import "./styles/timer.css";
 
 const Timer = ({ countdown, onComplete }) => {
   const [currentTime, setCurrentTime] = useState(Date.now() + 1000 * countdown);

@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
 import { RandomLetter, config } from "../hooks/useRandomLetter";
-import "./dice.style.css";
+import "./styles/dice.style.css";
 
 const Dice = ({ onClick, selectedDice, position }) => {
   //console.log(position);

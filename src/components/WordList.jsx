@@ -1,12 +1,14 @@
 import React from "react";
-import "./wordlist.css";
+import "./styles/wordlist.css";
 
 const WordList = ({ list, listHeader }) => {
   return (
-    <div className="wordList">
+    <div className="wordList" data-testid="testid">
       <h3>{listHeader}</h3>
       {list.map((item, index) => (
-        <div key={index}>{item}</div>
+        <div role="listItem" key={index}>
+          {item}
+        </div>
       ))}
     </div>
   );
